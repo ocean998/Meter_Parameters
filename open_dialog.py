@@ -137,7 +137,7 @@ class Ui_MainWindow(object):
 
     def openfile( self ):
         openfile_name = QFileDialog.getOpenFileName(
-            self, '选择文件' , 'Excel files(*.xlsx , *.xls)')
+            self, '选择文件', '', 'Excel files(*.xlsx , *.xls)')
         print(openfile_name)
 
     def retranslateUi(self, MainWindow):
