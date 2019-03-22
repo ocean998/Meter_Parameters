@@ -1,16 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'Meter_Parameter.ui'
-#
-# Created by: PyQt5 UI code generator 5.12.1
-#
-# WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QFileDialog
 
 
-class Ui_MainWindow(object):
+
+
+class Ui_MainWindow(QtWidgets.QMainWindow):
+    def __init__(self):
+        super(Ui_MainWindow,self).__init__()
+        # self.retranslateUi( self )
+
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.setWindowTitle("电表参数比对")
@@ -107,8 +108,8 @@ class Ui_MainWindow(object):
         self.lineEdit_16.setObjectName("lineEdit_16")
         self.gridLayout_4.addWidget(self.lineEdit_16, 2, 8, 1, 1)
 
-        # self.pushButton = QtWidgets.QPushButton(self.groupBox)
-        # self.pushButton.setGeometry(QtCore.QRect(890, 50, 90, 23))
+        self.pushButton = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton.setGeometry(QtCore.QRect(890, 50, 90, 23))
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.openfile)
 
@@ -135,10 +136,15 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def openfile( self ):
-        openfile_name = QFileDialog.getOpenFileName(
-            self, '选择文件' , 'Excel files(*.xlsx , *.xls)')
-        print(openfile_name)
+    def openfile(self):
+        # filename = QFileDialog.getOpenFileName(self, 'Open file', './')
+        # print(filename)
+
+
+        filename = QFileDialog.getOpenFileName( self, 'Open file', './' )
+        print( filename )
+
+
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -198,6 +204,6 @@ if __name__ == '__main__':
     MainWindow = QtWidgets.QMainWindow()
     ui = Ui_MainWindow()
     ui.setupUi(MainWindow)
-    # ui.pushButton_2.clicked.connect(ui.open_picture)
+    ui.pushButton_2.clicked.connect(ui.openfile)
     MainWindow.show()
     sys.exit(app.exec_())

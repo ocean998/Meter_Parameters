@@ -1,45 +1,61 @@
-from PyQt5 import QtCore, QtGui, QtWidgets, Qt
-from PyQt5.QtWidgets import *
-from PyQt5.QtCore import *
+# -*- coding: utf-8 -*-
 
-class Ui_MainWindow(QtWidgets.QMainWindow):
+# Form implementation generated from reading ui file 'Actions.ui'
+#
+# Created by: PyQt5 UI code generator 5.11.3
+#
+# WARNING! All changes made in this file will be lost!
 
+from PyQt5 import QtCore, QtGui, QtWidgets
+from wxpy import *
+
+
+
+
+class Ui_Form(QtWidgets.QWidget):
     def __init__(self):
-        super(Ui_MainWindow,self).__init__()
-        self.setupUi(self)
-        self.retranslateUi(self)
+        super(Ui_Form,self).__init__()
 
-    def setupUi(self, MainWindow):
-        MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(386, 127)
-        self.centralWidget = QtWidgets.QWidget(MainWindow)
-        self.centralWidget.setObjectName("centralWidget")
-        self.retranslateUi(MainWindow)
 
-        self.pushButton = QtWidgets.QPushButton(self.centralWidget)
-        self.pushButton.setGeometry(QtCore.QRect(190, 90, 75, 23))
+    def setupUi(self, Form):
+        Form.setObjectName("Form")
+        Form.resize(827, 508)
+        self.pushButton = QtWidgets.QPushButton(Form)
+        self.pushButton.setGeometry(QtCore.QRect(60, 50, 75, 23))
         self.pushButton.setObjectName("pushButton")
-        self.pushButton.setText("打开")
-        MainWindow.setCentralWidget(self.centralWidget)
-        QtCore.QMetaObject.connectSlotsByName(MainWindow)
+        self.pushButton.clicked.connect(self.open_bot)
 
-        self.pushButton.clicked.connect(self.openfile)
 
-    def retranslateUi(self, MainWindow):
+        self.pushButton_2 = QtWidgets.QPushButton(Form)
+        self.pushButton_2.setGeometry(QtCore.QRect(260, 50, 75, 23))
+        self.pushButton_2.setObjectName("pushButton_2")
+        self.lineEdit = QtWidgets.QLineEdit(Form)
+        self.lineEdit.setGeometry(QtCore.QRect(60, 110, 113, 20))
+        self.lineEdit.setObjectName("lineEdit")
+        self.graphicsView = QtWidgets.QGraphicsView(Form)
+        self.graphicsView.setGeometry(QtCore.QRect(260, 110, 256, 192))
+        self.graphicsView.setObjectName("graphicsView")
+        self.textEdit = QtWidgets.QTextEdit(Form)
+        self.textEdit.setGeometry(QtCore.QRect(70, 190, 104, 71))
+        self.textEdit.setObjectName("textEdit")
+
+        self.retranslateUi(Form)
+        QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "一颗数据小白菜"))
+        Form.setWindowTitle(_translate("Form", "Form"))
+        self.pushButton.setText(_translate("Form", "PushButton"))
+        self.pushButton_2.setText(_translate("Form", "PushButton"))
 
-
-    def openfile(self):
-        openfile_name = QFileDialog.getOpenFileName(self,'选择文件','','Excel files(*.xlsx , *.xls)')
-        print(openfile_name)
-
-
+    def open_bot( self ):
+        self.bot = Bot(console_qr=True, cache_path=True)
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    MainWindow = QtWidgets.QMainWindow()
-    ui = Ui_MainWindow()
-    ui.setupUi(MainWindow)
-    MainWindow.show()
+    Form = QtWidgets.QWidget()
+    ui = Ui_Form()
+    ui.setupUi(Form)
+    Form.show()
     sys.exit(app.exec_())
+
