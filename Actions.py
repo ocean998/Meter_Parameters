@@ -29,6 +29,9 @@ class Ui_Form(QtWidgets.QWidget):
         self.pushButton_2 = QtWidgets.QPushButton(Form)
         self.pushButton_2.setGeometry(QtCore.QRect(260, 50, 75, 23))
         self.pushButton_2.setObjectName("pushButton_2")
+        self.pushButton_2.clicked.connect( self.msg )
+
+
         self.lineEdit = QtWidgets.QLineEdit(Form)
         self.lineEdit.setGeometry(QtCore.QRect(60, 110, 113, 20))
         self.lineEdit.setObjectName("lineEdit")
@@ -49,7 +52,13 @@ class Ui_Form(QtWidgets.QWidget):
         self.pushButton_2.setText(_translate("Form", "PushButton"))
 
     def open_bot( self ):
-        self.bot = Bot(console_qr=True, cache_path=True)
+        # self.bot = Bot(console_qr=True, cache_path=True)
+        self.bot = Bot( cache_path=True )
+    def msg( self ):
+        my_friend = self.bot.friends().search('春暖花开')[0]
+
+        text = self.lineEdit.text()
+        my_friend.send( text )
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
