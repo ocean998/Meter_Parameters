@@ -1,6 +1,5 @@
 from PyQt5.QtWidgets import QApplication, QAction, QFileDialog, QTextEdit
 from PyQt5 import QtWidgets
-from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QIcon
 
 
@@ -27,7 +26,7 @@ class OpenFile(QtWidgets.QMainWindow):
         file.addAction(exit)
 
     def showDialog( self ):
-        filename, _ = QFileDialog.getOpenFileName(self, 'Open file', './')
+        filename = QFileDialog.getOpenFileName(self, 'Open file', './')
         if filename:
             file = open(filename)
             data = file.read()

@@ -107,8 +107,8 @@ class Ui_MainWindow(object):
         self.lineEdit_16.setObjectName("lineEdit_16")
         self.gridLayout_4.addWidget(self.lineEdit_16, 2, 8, 1, 1)
 
-        # self.pushButton = QtWidgets.QPushButton(self.groupBox)
-        # self.pushButton.setGeometry(QtCore.QRect(890, 50, 90, 23))
+        self.pushButton = QtWidgets.QPushButton(self.groupBox)
+        self.pushButton.setGeometry(QtCore.QRect(890, 50, 90, 23))
         self.pushButton.setObjectName("pushButton")
         self.pushButton.clicked.connect(self.openfile)
 
@@ -135,9 +135,9 @@ class Ui_MainWindow(object):
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
-    def openfile( self ):
+    def openfile(self):
         openfile_name = QFileDialog.getOpenFileName(
-            self, '选择文件' , 'Excel files(*.xlsx , *.xls)')
+            self, '选择文件', 'Excel files(*.xlsx , *.xls)')
         print(openfile_name)
 
     def retranslateUi(self, MainWindow):
