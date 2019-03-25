@@ -23,6 +23,6 @@ def print_others(msg):
     print(msg)
     # 回复消息
     msg.reply("hello world")
-
+bot.logout()
 
 embed()
