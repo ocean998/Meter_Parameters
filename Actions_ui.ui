@@ -68,6 +68,9 @@
       <height>20</height>
      </rect>
     </property>
+    <property name="text">
+     <string>水电费</string>
+    </property>
    </widget>
    <widget class="QTextEdit" name="textEdit">
     <property name="geometry">
@@ -84,35 +87,51 @@
      <rect>
       <x>280</x>
       <y>120</y>
-      <width>54</width>
-      <height>12</height>
+      <width>71</width>
+      <height>16</height>
      </rect>
     </property>
     <property name="text">
      <string>接收的消息</string>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="graphicsView">
-    <property name="geometry">
-     <rect>
-      <x>50</x>
-      <y>250</y>
-      <width>731</width>
-      <height>331</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_2">
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>230</y>
-      <width>101</width>
-      <height>16</height>
+      <x>40</x>
+      <y>310</y>
+      <width>731</width>
+      <height>271</height>
      </rect>
     </property>
     <property name="text">
      <string>接收的图片</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_5">
+    <property name="geometry">
+     <rect>
+      <x>280</x>
+      <y>40</y>
+      <width>90</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>模拟发送</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton_6">
+    <property name="geometry">
+     <rect>
+      <x>60</x>
+      <y>130</y>
+      <width>90</width>
+      <height>23</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>关闭机器人</string>
     </property>
    </widget>
   </widget>
