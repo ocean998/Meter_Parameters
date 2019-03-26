@@ -1,5 +1,5 @@
 from wxpy import *
-
+import  os
 
 from PyQt5.QtCore import QObject, pyqtSignal
 
@@ -39,7 +39,8 @@ def login_wchat():
         print(msg.file_name)
 
         if msg.type == 'Picture':
-            fn = 'C:\\Users\\Administrator\\PycharmProjects\\Meter_Parameters\\'+msg.file_name
+            fn = os.path.abspath(os.path.dirname(__file__))
+            fn = fn + '\\'+msg.file_name
             msg.get_file(save_path=fn)
             signal.run('Picture',fn)
     # 堵塞线程，并进入 Python 命令行
