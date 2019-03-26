@@ -1,28 +1,62 @@
 from wxpy import *
 
-bot = Bot(cache_path=True)
-# 获取好友
-my_friend = bot.friends().search('凯哥')[0]
 
-# 搜索信息
-messages = bot.messages.search(keywords='凯哥', sender=bot.self)
+from PyQt5.QtCore import QObject, pyqtSignal
 
-for message in messages:
-    print(message)
+# 信号对象
+
+
+class QTypeSignal(QObject):
+    # 定义一个信号
+    sendmsg = pyqtSignal(str, str)
+
+    def __init__(self):
+        super(QTypeSignal, self).__init__()
+
+    def run(self,msg,msg2):
+        # 发射信号
+        self.sendmsg.emit(msg, msg2)
+        print('sendmsg.emit',msg)
+        print('sendmsg.emit',msg2)
+
+
+# 好友
+my_friend = None
+bot = None
+signal = QTypeSignal()
+def login_wchat():
+    global bot
+    bot = Bot(cache_path=True)
+    print('启动机器人')
+    global my_friend
+    my_friend = bot.friends().search('凯哥')[0]
+
+    @bot.register()
+    def print_messages( msg ):
+        print(msg)
+        print(msg.text)
+        print(msg.type)
+        print(msg.file_name)
+
+        if msg.type == 'Picture':
+            fn = 'C:\\Users\\Administrator\\PycharmProjects\\Meter_Parameters\\'+msg.file_name
+            msg.get_file(save_path=fn)
+            signal.run('Picture',fn)
+    # 堵塞线程，并进入 Python 命令行
+
+    # embed()
+    print('堵塞线程，并进入 Python 命令行')
+
 
 # 发送文本
-my_friend.send('Hello, WeChat!')
-# 发送图片
+def sent_msg(msg):
+    global my_friend
+    my_friend.send(msg)
 
 
 
-# 消息接收监听器
-@bot.register()
-def print_others(msg):
-    # 输出监听到的消息
-    print(msg)
-    # 回复消息
-    msg.reply("hello world")
-bot.logout()
 
-embed()
+def logout_wchat():
+    global bot
+    bot.logout()
+    print('关闭机器人')
