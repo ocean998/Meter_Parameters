@@ -2,11 +2,12 @@
 
 # Form implementation generated from reading ui file 'Actions_ui.ui'
 #
-# Created by: PyQt5 UI code generator 5.12.1
+# Created by: PyQt5 UI code generator 5.11.3
 #
 # WARNING! All changes made in this file will be lost!
 
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PIL import Image
 
 
 class Ui_MainWindow(object):
@@ -35,15 +36,15 @@ class Ui_MainWindow(object):
         self.label = QtWidgets.QLabel(self.centralwidget)
         self.label.setGeometry(QtCore.QRect(280, 120, 71, 16))
         self.label.setObjectName("label")
-        self.label_2 = QtWidgets.QLabel(self.centralwidget)
-        self.label_2.setGeometry(QtCore.QRect(40, 310, 731, 271))
-        self.label_2.setObjectName("label_2")
         self.pushButton_5 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_5.setGeometry(QtCore.QRect(280, 40, 90, 23))
         self.pushButton_5.setObjectName("pushButton_5")
         self.pushButton_6 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_6.setGeometry(QtCore.QRect(60, 130, 90, 23))
         self.pushButton_6.setObjectName("pushButton_6")
+        self.graphicsView = QtWidgets.QGraphicsView(self.centralwidget)
+        self.graphicsView.setGeometry(QtCore.QRect(10, 260, 781, 311))
+        self.graphicsView.setObjectName("graphicsView")
         MainWindow.setCentralWidget(self.centralwidget)
         self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
@@ -51,6 +52,8 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
+
+        self.pushButton_3.clicked.connect(lambda: self.show_picture2( 'D:/PycharmProjects/Meter_Parameters/190326-225433.png' ) )
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -60,12 +63,24 @@ class Ui_MainWindow(object):
         self.pushButton_3.setText(_translate("MainWindow", "PushButton"))
         self.lineEdit.setText(_translate("MainWindow", "水电费"))
         self.label.setText(_translate("MainWindow", "接收的消息"))
-        self.label_2.setText(_translate("MainWindow", "接收的图片"))
         self.pushButton_5.setText(_translate("MainWindow", "模拟发送"))
         self.pushButton_6.setText(_translate("MainWindow", "关闭机器人"))
 
-
-
+    def show_picture2( self, fn='None' ):
+        if fn != 'None':
+            im = Image.open( fn )
+            print( im.size )
+            scene = QtWidgets.QGraphicsScene(  )
+            print( im.size )
+            pixmap = QtGui.QPixmap( fn )
+            print( im.size )
+            # .scaled(im.size[1], im.size[1])
+            item = QtWidgets.QGraphicsPixmapItem( pixmap )
+            print( im.size )
+            scene.addItem( item )
+            print( im.size )
+            self.graphicsView.setScene( scene )
+            print( fn )
 
 if __name__ == "__main__":
     import sys
@@ -75,3 +90,4 @@ if __name__ == "__main__":
     ui.setupUi(MainWindow)
     MainWindow.show()
     sys.exit(app.exec_())
+

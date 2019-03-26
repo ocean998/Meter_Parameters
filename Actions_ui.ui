@@ -95,19 +95,6 @@
      <string>接收的消息</string>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
-    <property name="geometry">
-     <rect>
-      <x>40</x>
-      <y>310</y>
-      <width>731</width>
-      <height>271</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>接收的图片</string>
-    </property>
-   </widget>
    <widget class="QPushButton" name="pushButton_5">
     <property name="geometry">
      <rect>
@@ -132,6 +119,16 @@
     </property>
     <property name="text">
      <string>关闭机器人</string>
+    </property>
+   </widget>
+   <widget class="QGraphicsView" name="graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>260</y>
+      <width>781</width>
+      <height>311</height>
+     </rect>
     </property>
    </widget>
   </widget>

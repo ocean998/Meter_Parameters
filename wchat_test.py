@@ -10,12 +10,12 @@ class picture(QWidget):
     def __init__(self):
         super(picture, self).__init__()
 
-        self.resize(1000, 1000)
+        self.resize(1000, 600)
         self.setWindowTitle("label显示图片")
 
         self.label = QLabel(self)
         self.label.setText("   显示图片")
-        self.label.setFixedSize(60, 90)
+        self.label.setFixedSize(950, 400)
         self.label.move(5, 50)
 
         self.label.setStyleSheet(
