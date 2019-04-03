@@ -15,7 +15,7 @@ class picture(QWidget):
 
         self.label = QLabel(self)
         self.label.setText("   显示图片")
-        self.label.setFixedSize(950, 400)
+        self.label.setFixedSize(300, 200)
         self.label.move(5, 50)
 
         self.label.setStyleSheet(
@@ -33,14 +33,16 @@ class picture(QWidget):
             self, "打开图片", "", "*.png;;*.jpg;;All Files(*)")
         # jpg = QtGui.QPixmap(imgName).scaled(self.label.width(), self.label.height())
         print(imgName)
-        print('size:',QtGui.QPixmap(imgName).height(), QtGui.QPixmap(imgName).width())
+        print(
+            'size:',
+            QtGui.QPixmap(imgName).height(),
+            QtGui.QPixmap(imgName).width())
         jpg = QtGui.QPixmap(imgName).scaled(
             self.label.width(), self.label.height())
         self.label.setPixmap(jpg)
         # self.label.setPixmap(QPixmap('C:\\Users\\Administrator\\Pictures\\拼音笔顺.jpg'))
         # # png = QtGui.QPixmap(imgName).scaled(self.label.width(), self.label.height())
         # # self.label.setPixmap(png)
-
 
 
 if __name__ == "__main__":

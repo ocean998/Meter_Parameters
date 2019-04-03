@@ -98,18 +98,9 @@ class Ui_MainWindow(object):
 
     def show_picture(self, fn='None'):
         if fn != 'None':
-            # self.image = QImage(fn)
-            # self.imageView.setPixmap(QPixmap.fromImage(self.image))
-            # self.resize(self.image.width(), self.image.height())
-            # self.label_2.setPicture(QPixmap.fromImage(self.image))
-
             jpg = QtGui.QPixmap(fn).scaled(
                 self.label_2.width(), self.label_2.height())
             self.label_2.setPixmap(jpg)
-
-            # imgName, imgType = QFileDialog.getOpenFileName(self, "打开图片", "", "*.jpg;;*.png;;All Files(*)")
-            # jpg = QtGui.QPixmap(imgName).scaled(self.label.width(), self.label.height())
-            # self.label.setPixmap(jpg)
 
 
 if __name__ == "__main__":

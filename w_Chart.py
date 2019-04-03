@@ -40,7 +40,8 @@ def login_wchat():
 
         if msg.type == 'Picture':
             fn = os.path.abspath(os.path.dirname(__file__))
-            fn = fn + '\\'+msg.file_name
+            fn = fn + '\\'+msg.file_name.split('.')[0]+'.jpg'
+            print('\nfn:', fn)
             msg.get_file(save_path=fn)
             signal.run('Picture',fn)
     # 堵塞线程，并进入 Python 命令行

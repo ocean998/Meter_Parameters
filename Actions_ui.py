@@ -8,6 +8,8 @@
 from PIL import Image
 from PyQt5 import QtCore, QtGui, QtWidgets
 import os
+
+
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -69,56 +71,48 @@ class Ui_MainWindow(object):
         self.pushButton_6.setText(_translate("MainWindow", "关闭机器人"))
         self.label_2.setText(_translate("MainWindow", "TextLabel"))
 
-    def open_picture( self ):
+    def open_picture(self):
         file = os.path.abspath(os.path.dirname(__file__))
-        file = file + '\\190327-093024.png'
+        file = file + '\\190327-093024.jpg'
         self.show_picture(file)
-    def show_picture( self, fn='None' ):
+
+    def show_picture(self, fn='None'):
         if fn != 'None':
             print('Label_2:', fn)
+            print(
+                'size:',
+                QtGui.QPixmap(fn).height(),
+                QtGui.QPixmap(fn).width())
+
             print('size:', QtGui.QPixmap(fn).height(), QtGui.QPixmap(fn).width())
             jpg = QtGui.QPixmap(fn).scaled(
                 self.label.width(), self.label.height())
-
-            # self.label_2.setPixmap(jpg)
-            image = QtGui.QImage(fn)
-
-            print('image size:',image.size())
-            self.label_2.setPixmap(QtGui.QPixmap.fromImage(image))
+            self.label_2.setPixmap(jpg)
 
 
-            self.label_2.setScaledContents(True)
-            print('size:', QtGui.QPixmap(fn).height(), QtGui.QPixmap(fn).width())
-
-            print(jpg)
-
-    def open_picture2( self ):
+    def open_picture2(self):
         file = os.path.abspath(os.path.dirname(__file__))
-        file = file + '\\190327-093024.png'
-        print('file:',file)
+        file = file + '\\拼音教学.jpg'
+        print('file:', file)
         self.show_picture2(file)
-    def show_picture2( self, fn='None' ):
-        print('show_picture2:',fn)
+
+    def show_picture2(self, fn='None'):
+        print('show_picture2:', fn)
         if fn != 'None':
-            im = Image.open( fn )
-            print( im.size )
-            scene = QtWidgets.QGraphicsScene(  )
-            print( im.size )
+            im = Image.open(fn)
+            print(im.size)
+            scene = QtWidgets.QGraphicsScene()
+            print(im.size)
 
-            image = QtGui.QImage(fn)
-            self.label_2.setPixmap(QtGui.QPixmap.fromImage(image))
-
-
-
-            print( im.size )
-            print('*'*20)
-            item = QtWidgets.QGraphicsPixmapItem( pixmap )
-            print( im.size )
-            scene.addItem( item )
-            print( im.size )
-            self.graphicsView.setScene( scene )
+            print(im.size)
+            print('*' * 20)
+            item = QtWidgets.QGraphicsPixmapItem(pixmap)
+            print(im.size)
+            scene.addItem(item)
+            print(im.size)
+            self.graphicsView.setScene(scene)
             self.graphicsView.show()
-            print( fn )
+            print(fn)
 
 
 if __name__ == "__main__":
