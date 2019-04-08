@@ -27,29 +27,28 @@ signal = QTypeSignal()
 def login_wchat():
     global bot
     bot = Bot(cache_path=True)
-    print('启动机器人')
-    global my_friend
-    my_friend = bot.friends().search('凯哥')[0]
+    print('启动机器人', get_name())
 
-    @bot.register()
-    def print_messages( msg ):
-        print(msg)
-        print(msg.text)
+    global my_friend
+    my_friend = bot.file_helper
+
+    @bot.register(bot.file_helper,except_self=False)
+    def print_helper_msg( msg ):
+        print('文件助手收到消息')
         print(msg.type)
-        print(msg.file_name)
+        if msg.type == 'Text':
+            signal.run('Text', msg.text)
 
         if msg.type == 'Picture':
             fn = os.path.abspath(os.path.dirname(__file__))
-            fn = fn + '\\'+msg.file_name.split('.')[0]+'.jpg'
+            fn = fn + '\\' + msg.file_name.split('.')[0] + '.jpg'
             print('\nfn:', fn)
             msg.get_file(save_path=fn)
-            signal.run('Picture',fn)
-    # 堵塞线程，并进入 Python 命令行
-
-    # embed()
-    print('堵塞线程，并进入 Python 命令行')
+            signal.run('Picture', fn)
 
 
+def get_name():
+    return   bot.self.name
 # 发送文本
 def sent_msg(msg):
     global my_friend

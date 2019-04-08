@@ -84,17 +84,19 @@ class Ui_MainWindow(object):
         print(self.lineEdit.text())
         wc.sent_msg(self.lineEdit.text())
 
+
+
+    # 微信接收到消息后的槽函数
+    def signal_slot(self):
+        send = wc.signal
+        send.sendmsg.connect(self.get)
+
     def get(self, msg1, msg2):
         print("QSlot get msg => " + msg1 + ' ' + msg2)
         self.textEdit.append(msg1)
         self.textEdit.append(msg2)
         print('get', msg2)
         self.show_picture(msg2)
-
-    def signal_slot(self):
-        send = wc.signal
-        print('--- 把信号绑定到槽函数 ---')
-        send.sendmsg.connect(self.get)
 
     def show_picture(self, fn='None'):
         if fn != 'None':

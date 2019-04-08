@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1192</width>
-    <height>768</height>
+    <width>1186</width>
+    <height>821</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -21,9 +21,9 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>20</y>
+      <y>10</y>
       <width>1171</width>
-      <height>121</height>
+      <height>111</height>
      </rect>
     </property>
     <property name="font">
@@ -253,30 +253,30 @@
       </item>
      </layout>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="pushButton_5">
      <property name="geometry">
       <rect>
-       <x>1049</x>
-       <y>40</y>
-       <width>111</width>
-       <height>23</height>
+       <x>1070</x>
+       <y>20</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>打开实物图片</string>
+      <string>再次比较</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton_2">
+    <widget class="QPushButton" name="pushButton_6">
      <property name="geometry">
       <rect>
-       <x>1049</x>
-       <y>80</y>
-       <width>111</width>
-       <height>23</height>
+       <x>1070</x>
+       <y>70</y>
+       <width>91</width>
+       <height>31</height>
       </rect>
      </property>
      <property name="text">
-      <string>打开MDS图片</string>
+      <string>清  除</string>
      </property>
     </widget>
    </widget>
@@ -284,16 +284,19 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>130</y>
+      <y>140</y>
       <width>1171</width>
-      <height>591</height>
+      <height>581</height>
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLabel" name="label_4">
+      <widget class="QLabel" name="label">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
        <property name="text">
-        <string>TextLabel</string>
+        <string>    实物图片</string>
        </property>
       </widget>
      </item>
@@ -314,12 +317,56 @@
       </spacer>
      </item>
      <item>
-      <widget class="QLabel" name="label">
-       <property name="enabled">
-        <bool>true</bool>
-       </property>
+      <widget class="QLabel" name="label_4">
        <property name="text">
-        <string>TextLabel</string>
+        <string>    MDS 图片</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>730</y>
+      <width>1171</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <item>
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="text">
+        <string>登录微信</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="text">
+        <string>退出微信</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="text">
+        <string>打开实物图片</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton">
+       <property name="text">
+        <string>打开MDS图片</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="pushButton_7">
+       <property name="text">
+        <string>帮  助</string>
        </property>
       </widget>
      </item>
@@ -331,7 +378,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1192</width>
+     <width>1186</width>
      <height>23</height>
     </rect>
    </property>
