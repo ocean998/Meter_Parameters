@@ -16,8 +16,6 @@ class QTypeSignal(QObject):
     def run(self,msg,msg2):
         # 发射信号
         self.sendmsg.emit(msg, msg2)
-        print('sendmsg.emit',msg)
-        print('sendmsg.emit',msg2)
 
 
 # 好友
@@ -34,8 +32,6 @@ def login_wchat():
 
     @bot.register(bot.file_helper,except_self=False)
     def print_helper_msg( msg ):
-        print('文件助手收到消息')
-        print(msg.type)
         if msg.type == 'Text':
             signal.run('Text', msg.text)
 
