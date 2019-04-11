@@ -102,64 +102,16 @@ class Meter_Para(QtWidgets.QMainWindow, ui.Ui_MainWindow):
         self.real_pic = ''
 
     def show_picture(self, label, fn='None'):
-        if label.text().find('实物') > 0 :
+        if label.text().find('实物') > 0:
             self.real_pic = fn
-        if label.text().find('MDS') > 0 :
+        if label.text().find('MDS') > 0:
             self.mds_pic = fn
         if fn != 'None' and label is not None:
             jpg = QtGui.QPixmap(fn).scaled(
                 label.width(), label.height())
             label.setPixmap(jpg)
 
-
-    def show_para( self, pic='real' , para={}):
-
-        if pic == 'real':
-            for x in para:
-                if x == '生产厂家':
-                    self.lineEdit.setText(para[x])
-                if x == '条形码':
-                    self.lineEdit_2.setText(para[x])
-                if x == '类型':
-                    self.lineEdit_3.setText(para[x])
-                if x == '电流':
-                    self.lineEdit_4.setText(para[x])
-                if x == '电压':
-                    self.lineEdit_5.setText(para[x])
-                if x == '精度':
-                    self.lineEdit_17.setText(para[x])
-                if x == '有功常数':
-                    self.lineEdit_6.setText(para[x])
-                if x == '无功常数':
-                    self.lineEdit_7.setText(para[x])
-                if x == '年份':
-                    self.lineEdit_8.setText(para[x])
-
-        if pic == 'mds':
-            for x in para:
-                if x == '生产厂家':
-                    self.lineEdit_9.setText(para[x])
-                if x == '条形码':
-                    self.lineEdit_10.setText(para[x])
-                if x == '类型':
-                    self.lineEdit_11.setText(para[x])
-                if x == '电流':
-                    self.lineEdit_12.setText(para[x])
-                if x == '电压':
-                    self.lineEdit_13.setText(para[x])
-                if x == '有功常数':
-                    self.lineEdit_14.setText(para[x])
-                if x == '精度':
-                    self.lineEdit_18.setText(para[x])
-                if x == '无功常数':
-                    self.lineEdit_15.setText(para[x])
-                if x == '年份':
-                    self.lineEdit_16.setText(para[x])
-
-
-
-
-    def get_para( self ):
+    def get_para(self):
         if len(self.real_pic) < 3:
             QMessageBox.question(self, '电能表参数比对说明', '请先打开或拍摄电能表实物图片！',
                                  QMessageBox.Yes)
@@ -170,18 +122,23 @@ class Meter_Para(QtWidgets.QMainWindow, ui.Ui_MainWindow):
             return
         ans = ap.analyze_pic(self.real_pic)
         real = ap.get_para(ans)
-        self.show_para('real', real)
-
         ans = ap.analyze_pic(self.mds_pic)
         mds = ap.get_para(ans)
-        self.show_para('mds', mds)
-        para = ['条形码', '类型', '精度', '电压', '电流', '有功常数', '无功常数', '生产厂家', '年份']
+
+        para = [ '精度', '电压', '电流', '有功常数', '无功常数']
+        para2 = ['条形码', '类型',   '生产厂家', '年份']
         for x in para:
+            s = x + ':\t' + real[x]
+            self.textEdit_2.append(s)
+            s = '      \t' + mds[x]
+            self.textEdit_2.append(s)
+        for x in para2:
             s = x + ':\t' + real[x]
             self.textEdit.append(s)
             s = '      \t' + mds[x]
             self.textEdit.append(s)
     #  显示消息对话框
+
     def help_msg(self):
         msg = '向文件助手发送图片，自动获取图片中的参数信息完成比对。\n'
         msg = msg + '本程序只接收微信文件助手的消息，向文件助手发送图片前请先回复：\n'
