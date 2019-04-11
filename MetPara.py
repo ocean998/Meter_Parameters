@@ -64,9 +64,9 @@ class Meter_Para(QtWidgets.QMainWindow, ui.Ui_MainWindow):
 
     def signal_slot(self):
         send = wc.signal
-        send.sendmsg.connect(self.get)
+        send.sendmsg.connect(self.get_pic)
 
-    def get(self, msg1, msg2):
+    def get_pic(self, msg1, msg2):
         print(msg1)
         print(msg2)
         if msg1 == 'Text':
@@ -98,6 +98,8 @@ class Meter_Para(QtWidgets.QMainWindow, ui.Ui_MainWindow):
             self.label_4.setPixmap(QtGui.QPixmap(""))
         self.label_4.setText('    MDS 图片')
         self.label.setText('    实物图片')
+        self.mds_pic = ''
+        self.real_pic = ''
 
     def show_picture(self, label, fn='None'):
         if label.text().find('实物') > 0 :
@@ -109,23 +111,9 @@ class Meter_Para(QtWidgets.QMainWindow, ui.Ui_MainWindow):
                 label.width(), label.height())
             label.setPixmap(jpg)
 
-    def get_para( self ):
-        if len(self.real_pic) < 3:
-            QMessageBox.question(self, '电能表参数比对说明', '请先打开或拍摄电能表实物图片！',
-                                 QMessageBox.Yes)
-            return
-        if len(self.real_pic) < 3:
-            QMessageBox.question(self, '电能表参数比对说明', '请先打开或拍摄电能表MDS系统参数图片！',
-                                 QMessageBox.Yes)
-            return
-        ans = ap.analyze_pic(self.real_pic)
-        rst = ap.get_para(ans)
-        self.show_para('real', rst)
 
-        ans = ap.analyze_pic(self.mds_pic)
-        rst = ap.get_para(ans)
-        self.show_para('mds', rst)
     def show_para( self, pic='real' , para={}):
+
         if pic == 'real':
             for x in para:
                 if x == '生产厂家':
@@ -170,6 +158,29 @@ class Meter_Para(QtWidgets.QMainWindow, ui.Ui_MainWindow):
 
 
 
+
+    def get_para( self ):
+        if len(self.real_pic) < 3:
+            QMessageBox.question(self, '电能表参数比对说明', '请先打开或拍摄电能表实物图片！',
+                                 QMessageBox.Yes)
+            return
+        if len(self.mds_pic) < 3:
+            QMessageBox.question(self, '电能表参数比对说明', '请先打开或拍摄电能表MDS系统参数图片！',
+                                 QMessageBox.Yes)
+            return
+        ans = ap.analyze_pic(self.real_pic)
+        real = ap.get_para(ans)
+        self.show_para('real', real)
+
+        ans = ap.analyze_pic(self.mds_pic)
+        mds = ap.get_para(ans)
+        self.show_para('mds', mds)
+        para = ['条形码', '类型', '精度', '电压', '电流', '有功常数', '无功常数', '生产厂家', '年份']
+        for x in para:
+            s = x + ':\t' + real[x]
+            self.textEdit.append(s)
+            s = '      \t' + mds[x]
+            self.textEdit.append(s)
     #  显示消息对话框
     def help_msg(self):
         msg = '向文件助手发送图片，自动获取图片中的参数信息完成比对。\n'
