@@ -1,13 +1,12 @@
 
 # -*- coding: utf-8 -*-
 import analyze_pic as ap
-import os
 
 
-from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtWidgets import QFileDialog, QWidget, QMessageBox
+from PyQt5 import  QtGui, QtWidgets
+from PyQt5.QtWidgets import QFileDialog, QMessageBox
 
-import Meter_Parameter as ui
+import Meter_Parameter_UI as ui
 import w_Chart as wc
 
 
@@ -100,6 +99,7 @@ class Meter_Para(QtWidgets.QMainWindow, ui.Ui_MainWindow):
         self.label.setText('    实物图片')
         self.mds_pic = ''
         self.real_pic = ''
+        self.textEdit.clear()
 
     def show_picture(self, label, fn='None'):
         if label.text().find('实物') > 0:
@@ -122,17 +122,11 @@ class Meter_Para(QtWidgets.QMainWindow, ui.Ui_MainWindow):
             return
         ans = ap.analyze_pic(self.real_pic)
         real = ap.get_para(ans)
-        ans = ap.analyze_pic(self.mds_pic)
-        mds = ap.get_para(ans)
+        ans2 = ap.analyze_pic(self.mds_pic)
+        mds = ap.get_MDS(ans2)
+        para = [ '条形码','生产厂家',  '类型','电压', '电流', '有功常数','无功常数',    '精度', '年份']
 
-        para = [ '精度', '电压', '电流', '有功常数', '无功常数']
-        para2 = ['条形码', '类型',   '生产厂家', '年份']
         for x in para:
-            s = x + ':\t' + real[x]
-            self.textEdit_2.append(s)
-            s = '      \t' + mds[x]
-            self.textEdit_2.append(s)
-        for x in para2:
             s = x + ':\t' + real[x]
             self.textEdit.append(s)
             s = '      \t' + mds[x]
@@ -166,5 +160,6 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     MP = Meter_Para()
+    MP.setWindowTitle('电能表实物参数与MDS系统参数比对')
     MP.show()
     sys.exit(app.exec_())
